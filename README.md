@@ -22,6 +22,26 @@ A boilerplate to help start microservices projects in Node.js quickly. Packaged 
 7. Run `npm start` to start as usual. Note that `lastcommitsha` is only available when running Docker image from DockerHub
 8. Run `swagger project start -m` to start in mock mode
 
+### Deployment steps
+TravisCI is used for CI/CD. There are 3 stages involved: test, build & publish.
+
+#### Test
+1. `npm install` is run by Travis to install dependencies
+2. `npm run test` is run to test the app
+
+
+#### Build
+Travis run `docker build` passing below built-in variables
+* `$TRAVIS_COMMIT` (aka latest commit SHA) into build argument GIT_COMMIT
+* `$TRAVIS_REPO_SLUG` (aka repo path) as Docker image tag
+
+#### Publish
+This is executed only after Build finish successfully
+* Log into DockerHub with 2 newly created variables $DOCKER_USERNAME & $DOCKER_PASSWORD on Travis
+`docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;`
+* Push the built image to DockerHub
+`docker push $TRAVIS_REPO_SLUG;`
+
 
 ### Pulling & Running from Docker Hub
 
