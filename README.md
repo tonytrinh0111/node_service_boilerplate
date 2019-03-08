@@ -49,7 +49,9 @@ Run `npm test` or `swagger project test` at root to execute the written test cas
 
 ## Limitation, Risk & To-Do
 1. This boilerplat is mainly for RESTful API and will not work for other pattern (e.g. batch service, cron-tainer).
-2. Security is a big issue with the current state. There need to be some mechanism for Authentication & Authorization for every invocation to the service.
+2. Security is a big issue with the current state.
+* The `string` module is vulnerable to regular expression denial of service when specifically crafted untrusted user input is passed into the underscore or unescapeHTML methods.
+* There need to be some mechanism for Authentication & Authorization for every invocation to the service.
 3. The API spec should include standard traits for error handling (HTTP response), pagination, tracibility (transactionId, source, timestamp etc.)
 4. Service management (e.g. rate limiting, analytics ) is also missing. Probably an API / service gateway is needed.
 5. Add `PromClient` and a new controller to epxose metrics
