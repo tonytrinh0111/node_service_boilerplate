@@ -1,0 +1,18 @@
+language: node_js
+sudo: required
+services:
+  - docker
+node_js:
+  - "11.0.0"
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm install
+        - npm run test
+    - stage: "build and publish"
+      script:
+        - docker build --force-rm=true --build-arg GIT_COMMIT=$TRAVIS_COMMIT -t $TRAVIS_REPO_SLUG .
+      after_success:
+        - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+        - docker push $TRAVIS_REPO_SLUG;
