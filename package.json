@@ -14,7 +14,11 @@
     "swagger-express-mw": "^0.1.0",
     "swagger-ui-express": "^4.0.2",
     "winston": "^3.2.1",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "growl": ">=1.10.0",
+    "lodash": ">=4.17.11",
+    "superagent": ">=3.7.0",
+    "mpath": ">=0.5.1"
   },
   "devDependencies": {
     "should": "^7.1.0",
